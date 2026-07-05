@@ -26,6 +26,9 @@ importers:
       '@fullcalendar/vue3':
         specifier: ^6.1.15
         version: 6.1.20(@fullcalendar/core@6.1.20)(vue@3.5.31(typescript@5.7.3))
+      '@internationalized/date':
+        specifier: ^3.12.2
+        version: 3.12.2
       '@lucide/vue':
         specifier: ^1.22.0
         version: 1.23.0(vue@3.5.31(typescript@5.7.3))
