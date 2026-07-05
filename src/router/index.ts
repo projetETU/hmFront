@@ -171,12 +171,7 @@ const router = createRouter({
       component: () => import('../views/Forms/FormElements.vue'),
       meta: { title: 'Form Elements' },
     },
-    {
-      path: '/basic-tables',
-      name: 'Basic Tables',
-      component: () => import('../views/Tables/BasicTables.vue'),
-      meta: { title: 'Basic Tables' },
-    },
+
     {
       path: '/line-chart',
       name: 'Line Chart',
