@@ -183,32 +183,27 @@ const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
 const menuGroups = [
   {
-    title: "Menu",
+    title: "Tableau de bord",
     items: [
       {
         icon: GridIcon,
         name: "Tableau de bord",
         mety: user.value.role.name === "ADMIN" ? true : false,
-        subItems: [{ name: "HM Ambohibao", path: "/", pro: false }
+        subItems: [
+          { name: "HM Ambohibao", path: "/", pro: false }
           // , { name: "HM Restaurant", path: "/restaurant", pro: false }
-
         ],
       },
-      
-
+    ],
+  },
+  {
+    title: "Ventes",
+    items: [
       {
         icon: ShoppingBag,
         name: "Commande",
         path: "/commande",
         mety: user.value.role.name === "ADMIN" ? true : false,
-
-      },
-      {
-        icon: Package,
-        name: "Stock et production",
-        path: "/stock",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-
       },
       {
         icon: FileText,
@@ -223,10 +218,50 @@ const menuGroups = [
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
       {
-        icon: Database,
-        name: "Mes données",
-        path: "/data",
-        mety: true
+        icon: CircleUser,
+        name: "Client",
+        path: "/client",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Achats",
+    items: [
+      {
+        icon: CircleDollarSign,
+        name: "Achat",
+        path: "/achat",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: ShoppingCart,
+        name: "Mes achats",
+        path: "/mesAchats",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: Truck,
+        name: "Fournisseur",
+        path: "/fournisseur",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: DollarSign,
+        name: "Mode de paiement",
+        path: "/modePaiement",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Stock & Catalogue",
+    items: [
+      {
+        icon: Package,
+        name: "Stock et production",
+        path: "/stock",
+        mety: user.value.role.name === "ADMIN" ? true : false,
       },
       {
         icon: UtensilsCrossed,
@@ -234,33 +269,6 @@ const menuGroups = [
         path: "/article",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
-      {
-        icon: CircleUser,
-        name: "Client",
-        path: "/client",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-      {
-        icon: Factory,
-        name: "Point de vente",
-        path: "/point-de-vente",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-
-      {
-        icon: Truck,
-        name: "Fournisseur",
-        path: "/fournisseur",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-
-      {
-        icon: Fingerprint,
-        name: "Departement",
-        path: "/departement",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-
       {
         icon: Apple,
         name: "Produits",
@@ -273,100 +281,36 @@ const menuGroups = [
         path: "/categorie",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
-
-      {
-        icon: CircleDollarSign,
-        name: "Achat",
-        path: "/achat",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-
-      {
-        icon: ShoppingCart,
-        name: "Mes achats",
-        path: "/mesAchats",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-      {
-        icon: DollarSign,
-        name: "Mode de paiement",
-        path: "/modePaiement",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-      // {
-      //   icon: CalenderIcon,
-      //   name: "Calendar",
-      //   path: "/calendar",
-      //   mety: user.value.role.name === "ADMIN" ? true : false,
-      // },
-      //       {
-      //         icon: UserCircleIcon,
-      //         name: "Profil d'utilisateur",
-      //         path: "/profile",
-      //  mety : user.value.role.name === "ADMIN" ? true : false,      },
-
-      // {
-      //   name: "Forms",
-      //   icon: ListIcon,
-      //   mety : user.value.role.name === "ADMIN" ? true : false,
-      //   subItems: [
-      //     { name: "Form Elements", path: "/form-elements", pro: false },
-      //   ],
-      // },
-      // {
-      //   name: "Tables",
-      //   icon: TableIcon,
-      //   mety : user.value.role.name === "ADMIN" ? true : false,
-      //   subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-      // },
-      // {
-      //   name: "Pages",
-      //   icon: PageIcon,
-      //   mety : user.value.role.name === "ADMIN" ? true : false,
-      //   subItems: [
-      //     { name: "Black Page", path: "/blank", pro: false },
-      //     { name: "404 Page", path: "/error-404", pro: false },
-      //   ],
-      // },
     ],
   },
-  // {
-  //   title: "Others",
-  //   items: [
-  //     {
-  //       icon: PieChartIcon,
-  //       name: "Charts",
-  //      mety : user.value.role.name === "ADMIN" ? true : false,
-  //       subItems: [
-  //         { name: "Line Chart", path: "/line-chart", pro: false },
-  //         { name: "Bar Chart", path: "/bar-chart", pro: false },
-  //       ],
-  //     },
-  //     {
-  //       icon: BoxCubeIcon,
-  //       name: "Ui Elements",
-  //      mety : user.value.role.name === "ADMIN" ? true : false,
-  //       subItems: [
-  //         { name: "Alerts", path: "/alerts", pro: false },
-  //         { name: "Avatars", path: "/avatars", pro: false },
-  //         { name: "Badge", path: "/badge", pro: false },
-  //         { name: "Buttons", path: "/buttons", pro: false },
-  //         { name: "Images", path: "/images", pro: false },
-  //         { name: "Videos", path: "/videos", pro: false },
-  //       ],
-  //     },
-  //     {
-  //       icon: PlugInIcon,
-  //       name: "Authentication",
-  //      mety : user.value.role.name === "ADMIN" ? true : false,
-  //       subItems: [
-  //         { name: "Signin", path: "/signin", pro: false },
-  //         { name: "Signup", path: "/signup", pro: false },
-  //       ],
-  //     },
-  //     // ... Add other menu items here
-  //   ],
-  // },
+  {
+    title: "Organisation",
+    items: [
+      {
+        icon: Factory,
+        name: "Point de vente",
+        path: "/point-de-vente",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: Fingerprint,
+        name: "Departement",
+        path: "/departement",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Données",
+    items: [
+      {
+        icon: Database,
+        name: "Mes données",
+        path: "/data",
+        mety: true,
+      },
+    ],
+  },
 ];
 
 const isActive = (path) => route.path === path;
