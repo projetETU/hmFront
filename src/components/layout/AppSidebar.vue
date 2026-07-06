@@ -183,7 +183,7 @@ const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
 const menuGroups = [
   {
-    title: "Menu",
+    title: "Tableau de bord",
     items: [
       {
         icon: GridIcon,
@@ -194,48 +194,115 @@ const menuGroups = [
           // , { name: "HM Restaurant", path: "/restaurant", pro: false }
         ],
       },
+    ],
+  },
+  {
+    title: "Ventes",
+    items: [
       {
         icon: ShoppingBag,
-        name: "Ventes",
+        name: "Commande",
+        path: "/commande",
         mety: user.value.role.name === "ADMIN" ? true : false,
-        subItems: [
-          { name: "Commande", path: "/commande", pro: false },
-          { name: "Mes factures", path: "/mes-commande", pro: false },
-          { name: "Historique de commande", path: "/historique-commande", pro: false },
-          { name: "Client", path: "/client", pro: false },
-        ],
       },
+      {
+        icon: FileText,
+        name: "Mes factures",
+        path: "/mes-commande",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: History,
+        name: "Historique de commande",
+        path: "/historique-commande",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: CircleUser,
+        name: "Client",
+        path: "/client",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Achats",
+    items: [
       {
         icon: CircleDollarSign,
-        name: "Achats",
+        name: "Achat",
+        path: "/achat",
         mety: user.value.role.name === "ADMIN" ? true : false,
-        subItems: [
-          { name: "Achat", path: "/achat", pro: false },
-          { name: "Mes achats", path: "/mesAchats", pro: false },
-          { name: "Fournisseur", path: "/fournisseur", pro: false },
-          { name: "Mode de paiement", path: "/modePaiement", pro: false },
-        ],
       },
+      {
+        icon: ShoppingCart,
+        name: "Mes achats",
+        path: "/mesAchats",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: Truck,
+        name: "Fournisseur",
+        path: "/fournisseur",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: DollarSign,
+        name: "Mode de paiement",
+        path: "/modePaiement",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Stock & Catalogue",
+    items: [
       {
         icon: Package,
-        name: "Stock & Catalogue",
+        name: "Stock et production",
+        path: "/stock",
         mety: user.value.role.name === "ADMIN" ? true : false,
-        subItems: [
-          { name: "Stock et production", path: "/stock", pro: false },
-          { name: "Article", path: "/article", pro: false },
-          { name: "Produits", path: "/produit", pro: false },
-          { name: "Categorie", path: "/categorie", pro: false },
-        ],
       },
       {
-        icon: Factory,
-        name: "Organisation",
+        icon: UtensilsCrossed,
+        name: "Article",
+        path: "/article",
         mety: user.value.role.name === "ADMIN" ? true : false,
-        subItems: [
-          { name: "Point de vente", path: "/point-de-vente", pro: false },
-          { name: "Departement", path: "/departement", pro: false },
-        ],
       },
+      {
+        icon: Apple,
+        name: "Produits",
+        path: "/produit",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: CircleQuestionMark,
+        name: "Categorie",
+        path: "/categorie",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Organisation",
+    items: [
+      {
+        icon: Factory,
+        name: "Point de vente",
+        path: "/point-de-vente",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+      {
+        icon: Fingerprint,
+        name: "Departement",
+        path: "/departement",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+    ],
+  },
+  {
+    title: "Données",
+    items: [
       {
         icon: Database,
         name: "Mes données",
