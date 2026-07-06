@@ -311,8 +311,7 @@ const menuGroups = [
       },
     ],
   },
-];
-const isActive = (path) => route.path === path;
+];const isActive = (path) => route.path === path;
 
 const toggleSubmenu = (groupIndex, itemIndex) => {
   const key = `${groupIndex}-${itemIndex}`;
