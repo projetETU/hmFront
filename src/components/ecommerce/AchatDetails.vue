@@ -50,7 +50,7 @@
 
             <div class=" items-end justify-between mt-5">
                 <div>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Restant</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Solde</span>
                     <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.restant }} Ar
                     </h4>
 
