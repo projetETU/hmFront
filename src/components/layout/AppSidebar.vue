@@ -223,6 +223,12 @@ const menuGroups = [
         path: "/client",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
+      {
+        icon: Factory,
+        name: "Point de vente",
+        path: "/point-de-vente",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      }
     ],
   },
   {
@@ -287,12 +293,6 @@ const menuGroups = [
     title: "Organisation",
     items: [
       {
-        icon: Factory,
-        name: "Point de vente",
-        path: "/point-de-vente",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-      {
         icon: Fingerprint,
         name: "Departement",
         path: "/departement",
@@ -311,7 +311,7 @@ const menuGroups = [
       },
     ],
   },
-];const isActive = (path) => route.path === path;
+]; const isActive = (path) => route.path === path;
 
 const toggleSubmenu = (groupIndex, itemIndex) => {
   const key = `${groupIndex}-${itemIndex}`;
