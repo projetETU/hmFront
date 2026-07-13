@@ -612,14 +612,14 @@ const generatePDF = () => {
     doc.setFont(undefined, "bold");
     doc.text("STAT :", startX + 75, 72);
 
-    const index = stat.indexOf("de");
+    const index = stat.indexOf("du");
     const ligne1 = stat.substring(0, index).trim();
     const ligne2 = stat.substring(index).trim();
 
     doc.setFont(undefined, "normal");
-
+    
     doc.text(ligne1, startX + 90, 72);
-    // doc.text(ligne2, startX + 90, 78);
+    doc.text(ligne2, startX + 90, 78);
 
     // =========================
     // TABLEAU
