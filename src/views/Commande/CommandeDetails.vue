@@ -613,7 +613,7 @@ const generatePDF = () => {
     doc.text("STAT :", startX + 75, 72);
 
     doc.setFont(undefined, "normal");
-    doc.text(stat, startX + 85, 72);
+    doc.text(stat, startX + 87, 72);
 
     // =========================
     // TABLEAU
