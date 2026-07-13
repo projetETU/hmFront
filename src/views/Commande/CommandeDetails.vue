@@ -606,7 +606,7 @@ const generatePDF = () => {
     doc.setFont(undefined, "bold");
     doc.text("- RC :", startX + 103, 67);
     doc.setFont(undefined, "normal");
-    doc.text(rc, startX + 112, 75);
+    doc.text(rc, startX + 112, 67);
 
     // STAT
     doc.setFont(undefined, "bold");
