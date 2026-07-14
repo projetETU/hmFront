@@ -4,9 +4,9 @@
   >
     <div class="flex flex-col gap-5 mb-6 sm:flex-row sm:justify-between">
       <div class="w-full">
-        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">Statistics</h3>
-        <p class="mt-1 text-gray-500 text-theme-sm dark:text-gray-400">
-          Target you’ve set for each month
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-white/90">Statistique</h3>
+        <p class="mt-1 text-sm text-gray-500 dark:text-white/60">
+          Aperçu des ventes et du revenu
         </p>
       </div>
 
@@ -68,7 +68,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import flatPickr from 'vue-flatpickr-component'
 
@@ -90,11 +90,11 @@ import VueApexCharts from 'vue3-apexcharts'
 
 const series = ref([
   {
-    name: 'Sales',
+    name: 'ULYS SA',
     data: [180, 190, 170, 160, 175, 165, 170, 205, 230, 210, 240, 235],
   },
   {
-    name: 'Revenue',
+    name: 'AUTRE',
     data: [40, 30, 50, 40, 55, 40, 70, 100, 110, 120, 150, 140],
   },
 ])
