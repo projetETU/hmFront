@@ -3,7 +3,6 @@
     <div class="space-y-6">
       <div class="w-full space-y-5">
         <ecommerce-metrics  :clients="clients" :point-de-vente="pointDeVente" />
-        <monthly-target />
       </div>
 
       <div class="grid lg:grid-cols-12 gap-4 md:gap-6">
@@ -30,11 +29,9 @@ import api from '@/api/api'
 
 import AdminLayout from '../components/layout/AdminLayout.vue'
 import EcommerceMetrics from '../components/ecommerce/EcommerceMetrics.vue'
-import MonthlyTarget from '../components/ecommerce/MonthlySale.vue'
 
 
 import StatisticsChart from '../components/ecommerce/StatisticsChart.vue'
-import RecentOrders from '../components/ecommerce/RecentOrders.vue'
 
 const loading = ref(false)
 const clients = ref(null)
