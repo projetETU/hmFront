@@ -2,7 +2,7 @@
   <admin-layout>
     <div class="space-y-6">
       <div class="w-full space-y-5">
-        <ecommerce-metrics  :clients="clients" :point-de-vente="pointDeVente" />
+        <ecommerce-metrics  :clients="clients" :point-de-vente="pointDeVente" :top="top" />
       </div>
 
       <div class="grid lg:grid-cols-12 gap-4 md:gap-6">
