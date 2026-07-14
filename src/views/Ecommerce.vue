@@ -36,18 +36,21 @@ import StatisticsChart from '../components/ecommerce/StatisticsChart.vue'
 const loading = ref(false)
 const clients = ref(null)
 const pointDeVente = ref(null)
+const top = ref(null) 
 const errorMsg = ref('')
 
 
 onMounted(async () => {
   loading.value = true
   try {
-    const [apiClients, apiPointDeVente] = await Promise.all([
+    const [apiClients, apiPointDeVente , apiTop] = await Promise.all([
       api.get('api/client/count'),
-      api.get('api/point-de-vente/count')
+      api.get('api/point-de-vente/count'),
+      api.get('api/article/top'),
     ])
     clients.value = apiClients.data.data
     pointDeVente.value = apiPointDeVente.data.data
+    top.value = apiTop.data.data
 
   } catch (err: any) {
     errorMsg.value = "Erreur lors du chargement"

@@ -77,7 +77,7 @@
       <div class="flex items-end justify-between mt-5">
         <div>
           <span class="text-sm text-gray-500 dark:text-gray-400">Top article</span>
-          <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ pointDeVente }}</h4>
+          <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ top }}</h4>
         </div>
         <span
           class="flex items-center gap-1 rounded-full bg-success-50 py-0.5 pl-2 pr-2.5 text-sm font-medium text-success-600 dark:bg-success-500/15 dark:text-success-500">
@@ -136,7 +136,8 @@
 <script setup lang="ts">
 defineProps<{
   clients: number | null,
-  pointDeVente: number | null
+  pointDeVente: number | null , 
+  top : string | null  
 
 }>()
 </script>
