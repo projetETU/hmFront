@@ -514,13 +514,13 @@ const categorieEmojis: Record<string, string> = {
   'samboss': '',
   'panini': '',
   'char siu': '',
-  
   'pain': '',
+  'salade': '',
 };
 
 function getEmojiForcategorie(categorieName: string): string {
   const key = categorieName.toLowerCase().trim();
-  return categorieEmojis[key] ?? '📦';
+  return categorieEmojis[key] ?? '';
 }
 
 async function fetchArticles() {
