@@ -689,7 +689,7 @@ const generatePDF = () => {
     );
 
     doc.setFont(undefined, "bold");
-    doc.setFontSize(12);
+    doc.setFontSize(11);
     doc.text(
       ` ${numberToWordsFr(
         totalGeneral
