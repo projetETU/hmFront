@@ -680,11 +680,21 @@ const generatePDF = () => {
     doc.setFontSize(10);
 
     doc.text(
-      `Arrêtée la présente facture à la somme de : ${numberToWordsFr(
+      `Arrêtée la présente facture à la somme de :`,
+      startX + 5,
+      finalY + 20,
+      {
+        maxWidth: 100,
+      }
+    );
+
+    doc.setFont(undefined, "bold");
+    doc.text(
+      ` ${numberToWordsFr(
         totalGeneral
       )} Ariary`,
       startX + 5,
-      finalY + 20,
+      finalY + 25,
       {
         maxWidth: 100,
       }
