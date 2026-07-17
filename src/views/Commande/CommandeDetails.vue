@@ -659,7 +659,7 @@ const generatePDF = () => {
         2: { cellWidth: 10, halign: "center" }, // Qté
         3: { cellWidth: 14, halign: "center" }, // Remise
         4: { cellWidth: 22, halign: "right" },  // P.U
-        5: { cellWidth: 30, halign: "right" },  // Montant
+        5: { cellWidth: 25, halign: "right" },  // Montant
       },
     });
 
