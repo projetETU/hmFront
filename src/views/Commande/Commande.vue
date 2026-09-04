@@ -39,11 +39,21 @@
 
           <!-- Section 1: Client et Point de Vente -->
           <div class="p-6 space-y-4 border-b border-gray-100 dark:border-slate-700">
+            
             <div class="flex items-center gap-3">
-              <Checkbox id="terms" :checked="isEchange" @click="isEchange = !isEchange" />
-              <Label for="terms">Echange ??</Label>
-            </div>
+                <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                  <Checkbox class="w-6 h-6" id="terms" :checked="isEchange" @click="isEchange = !isEchange" />
+                  <Label for="terms">Echange</Label>
+                </div>
 
+                   <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                  <Checkbox class="w-6 h-6" id="terms" :checked="isEchange" @click="isEchange = !isEchange" />
+                  <Label for="terms">Retour</Label>
+                </div>
+             
+            </div>
+          
+           
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <!-- Client -->

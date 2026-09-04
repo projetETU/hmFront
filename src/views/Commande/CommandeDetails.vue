@@ -619,7 +619,6 @@ const generatePDF = () => {
     const ligne2 = stat.substring(index).trim();
 
    
-    
     doc.text(ligne1, startX + 87, 72);
     doc.text(ligne2, startX + 87, 77);
 
@@ -664,7 +663,6 @@ const generatePDF = () => {
         5: { cellWidth: 20, halign: "right" },  // Montant
       },
     });
-
     const finalY = doc.lastAutoTable.finalY;
 
     // =========================
