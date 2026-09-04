@@ -166,53 +166,6 @@
                         </div>
                     </div>
 
-                    <div class="flex items-end justify-between mt-2">
-                        <div class="w-full">
-                            <Popover v-model:open="openmodepaiement">
-                                <PopoverTrigger as-child>
-                                    <Button variant="outline" role="combobox" :aria-expanded="openmodepaiement"
-                                        class="h-11 w-full font-normal text-sm transition-all duration-200" :class="[
-                                            selectedmodepaiement
-                                                ? 'border-blue-300 dark:border-blue-600 bg-blue-50/50 dark:bg-blue-950/20 hover:border-blue-400'
-                                                : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'
-                                        ]">
-                                        <div class="flex items-center gap-2.5 truncate">
-                                            <span :class="[
-                                                'text-sm transition-colors truncate',
-                                                selectedmodepaiement
-                                                    ? 'text-gray-900 dark:text-white font-medium'
-                                                    : 'text-gray-500 dark:text-slate-400'
-                                            ]">
-                                                {{ selectedmodepaiement?.label || "Sélectionner un mode de paiement" }}
-                                            </span>
-                                        </div>
-                                        <ChevronsUpDownIcon class="w-4 h-4 opacity-40 shrink-0" />
-                                    </Button>
-                                </PopoverTrigger>
-                                <PopoverContent class="w-full p-0">
-                                    <Command>
-                                        <CommandInput class="h-9" placeholder="Rechercher un mode..." />
-                                        <CommandList>
-                                            <CommandEmpty class="py-3 text-sm text-gray-500 text-center">Aucun mode
-                                                trouvé.</CommandEmpty>
-                                            <CommandGroup>
-                                                <CommandItem v-for="mode in modepaiements" :key="mode.value"
-                                                    :value="mode.value"
-                                                    @select="() => { modepaiementValue = mode.value; openmodepaiement = false }"
-                                                    class="cursor-pointer">
-                                                    <span class="truncate">{{ mode.label }}</span>
-                                                    <CheckIcon :class="[
-                                                        'ml-auto w-4 h-4 transition-opacity',
-                                                        modepaiementValue === mode.value ? 'opacity-100' : 'opacity-0'
-                                                    ]" />
-                                                </CommandItem>
-                                            </CommandGroup>
-                                        </CommandList>
-                                    </Command>
-                                </PopoverContent>
-                            </Popover>
-                        </div>
-                    </div>
 
                     <div class="flex items-end justify-between mt-2">
                         <div class="w-full">

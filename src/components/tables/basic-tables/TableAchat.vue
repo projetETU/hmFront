@@ -55,7 +55,7 @@
             >
 
             <td class="px-5 py-4 sm:px-6">
-              <span class="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+              <span class="block font-black text-xl text-gray-800  dark:text-white/90">
                 {{ achat.fournisseur }}
               </span>
             </td>
@@ -106,7 +106,7 @@
               {{ totalRestant.toLocaleString('fr-FR') }} Ar
             </td>
           </tr>
-        </tfoot>
+        </tfoot><statistics-chart />
 
       </table>
     </div>

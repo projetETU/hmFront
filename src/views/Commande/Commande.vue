@@ -267,8 +267,12 @@
                   {{ getItemQuantity(product.id) }}
                 </span>
 
-                <!-- Emoji -->
-                <span class="text-2xl">{{ product.emoji }}</span>
+                <SendIcon></SendIcon>
+                
+                <span class="text-2xl">
+
+
+                </span>
 
                 <!-- Nom et Prix -->
                 <div class="min-w-0">
@@ -452,6 +456,7 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { watch } from "vue";
+import SendIcon from "@/icons/SendIcon.vue";
 
 
 const currentPageTitle = ref("Commande");

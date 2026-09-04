@@ -246,16 +246,29 @@ const menuGroups = [
         path: "/mesAchats",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
+         {
+        icon: Apple,
+        name: "Produits",
+        path: "/produit",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
       {
         icon: Truck,
         name: "Fournisseur",
         path: "/fournisseur",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
-      {
-        icon: DollarSign,
-        name: "Mode de paiement",
-        path: "/modePaiement",
+      // {
+      //   icon: DollarSign,
+      //   name: "Mode de paiement",
+      //   path: "/modePaiement",
+      //   mety: user.value.role.name === "ADMIN" ? true : false,
+      // },
+
+          {
+        icon: CircleQuestionMark,
+        name: "Categorie",
+        path: "/categorie",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
     ],
@@ -275,18 +288,8 @@ const menuGroups = [
         path: "/article",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
-      {
-        icon: Apple,
-        name: "Produits",
-        path: "/produit",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
-      {
-        icon: CircleQuestionMark,
-        name: "Categorie",
-        path: "/categorie",
-        mety: user.value.role.name === "ADMIN" ? true : false,
-      },
+   
+  
     ],
   },
   {

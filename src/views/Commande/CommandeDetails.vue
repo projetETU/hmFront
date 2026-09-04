@@ -581,45 +581,47 @@ const generatePDF = () => {
     // =========================
     // ENCADRÉ CLIENT
     // =========================
-    doc.roundedRect(startX + 70, 40, 70, 38, 2, 2);
+    doc.roundedRect(startX + 70, 40, 70, 40, 2, 2);
 
-    doc.setFont(undefined, "bold");
     doc.setFontSize(9.5);
 
     doc.text(`DOIT : ${client}`, startX + 75, 47);
 
-    doc.setFont(undefined, "normal");
+    doc.setFont(undefined, "bold");
     doc.setFontSize(9);
 
+
+    
     doc.text(pointVente, startX + 75, 52);
 
+    doc.setFont(undefined, "normal");
+    
     doc.text(adresse, startX + 75, 57);
 
     doc.text(`${ville} ${province}`, startX + 75, 62);
 
-    doc.setFont(undefined, "bold");
+   
 
     doc.text("NIF :", startX + 75, 67);
     doc.setFont(undefined, "normal");
     doc.text(nif, startX + 85, 67);
 
-    doc.setFont(undefined, "bold");
+    
     doc.text("- RC :", startX + 103, 67);
-    doc.setFont(undefined, "normal");
     doc.text(rc, startX + 112, 67);
 
     // STAT
-    doc.setFont(undefined, "bold");
+  
     doc.text("STAT :", startX + 75, 72);
 
     const index = stat.indexOf("du");
     const ligne1 = stat.substring(0, index).trim();
     const ligne2 = stat.substring(index).trim();
 
-    doc.setFont(undefined, "normal");
+   
     
-    doc.text(ligne1, startX + 90, 72);
-    doc.text(ligne2, startX + 90, 77);
+    doc.text(ligne1, startX + 87, 72);
+    doc.text(ligne2, startX + 87, 77);
 
     // =========================
     // TABLEAU
@@ -690,10 +692,12 @@ const generatePDF = () => {
 
     doc.setFont(undefined, "bold");
     doc.setFontSize(11);
+    
+    const words = numberToWordsFr(totalGeneral);
+    const totalInWords = words.charAt(0).toUpperCase() + words.slice(1) + " Ariary";
+    
     doc.text(
-      ` ${numberToWordsFr(
-        totalGeneral
-      )} Ariary`,
+      ` ${totalInWords}`,
       startX + 5,
       finalY + 25,
       {
@@ -702,6 +706,7 @@ const generatePDF = () => {
     );
 
     doc.addImage(Signature, "PNG", startX + 100, finalY + 30, 28, 14);
+    doc.setFont(undefined, "normal");
     doc.setFontSize(8);
 
     doc.text(
