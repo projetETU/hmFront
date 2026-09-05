@@ -39,9 +39,9 @@
 
           <!-- Section 1: Client et Point de Vente -->
           <div class="p-6 space-y-4 border-b border-gray-100 dark:border-slate-700">
-            
+
             <div class="flex items-center gap-3">
-                <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+              <!-- <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
                   <Checkbox class="w-6 h-6" id="terms" :checked="isEchange" @click="isEchange = !isEchange" />
                   <Label for="terms">Echange</Label>
                 </div>
@@ -49,11 +49,26 @@
                    <div class="text-lg font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
                   <Checkbox class="w-6 h-6" id="terms" :checked="isEchange" @click="isEchange = !isEchange" />
                   <Label for="terms">Retour</Label>
+                </div> -->
+
+              <RadioGroup class="flex  gap-4 " default-value="Commande">
+                <div class="flex items-center space-x-2">
+                  <RadioGroupItem class="w-5 h-5" id="r1" value="Commande" />
+                  <Label for="r1">Commande</Label>
                 </div>
-             
+                <div class="flex items-center space-x-2">
+                  <RadioGroupItem class="w-5 h-5" id="r2" value="Echange" />
+                  <Label for="r2">Echange</Label>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <RadioGroupItem class="w-5 h-5" id="r3" value="Retour" />
+                  <Label for="r3">Retour</Label>
+                </div>
+              </RadioGroup>
+
             </div>
-          
-           
+
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <!-- Client -->
@@ -278,7 +293,7 @@
                 </span>
 
                 <SendIcon></SendIcon>
-                
+
                 <span class="text-2xl">
 
 
@@ -341,13 +356,13 @@
                 <!-- Emoji -->
                 <span class="text-lg shrink-0 w-6 text-center">{{ item.emoji }}</span>
 
-                
+
                 <div class="flex-1 min-w-0">
                   <p class="text-xs font-medium text-gray-800 dark:text-white truncate">{{ item.name }}</p>
                   <p class="text-[13px] text-gray-500 dark:text-gray-400">{{ item.prix.toLocaleString('fr-FR') }} Ar</p>
                 </div>
 
-               
+
                 <div class="flex items-end gap-4 shrink-0">
 
                   <!-- Quantité -->
@@ -399,7 +414,7 @@
             </div>
           </div>
 
-         
+
           <div class="px-5 py-4 border-t border-gray-100 dark:border-slate-700 space-y-4 mt-auto">
             <div v-if="items.length > 0" class="space-y-2">
               <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
@@ -419,7 +434,7 @@
               </div>
             </div>
 
-            
+
             <button :disabled="items.length === 0 || !clientValue" :class="[
               'w-full h-11 rounded-lg font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2',
               items.length > 0 && clientValue
@@ -430,7 +445,7 @@
               Valider
             </button>
 
-           
+
             <button v-if="items.length > 0"
               class="w-full text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors py-2 font-medium"
               @click="clearOrder">
@@ -467,6 +482,11 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { watch } from "vue";
 import SendIcon from "@/icons/SendIcon.vue";
+
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from '@/components/ui/radio-group'
 
 
 const currentPageTitle = ref("Commande");
@@ -570,9 +590,18 @@ const openErrorAlert = ref(false);
 const message = ref('');
 const isEchange = ref(false)
 
+const commandeSelected = ref('Commande');
+const echangeSelected = ref('Echange');
+const retourSelected = ref('Retour');
+
+
+
+
+
 watch(isEchange, (newVal) => {
   console.log('isEchange changed:', newVal)
 })
+
 
 
 const selectedClient = computed(() => clients.value.find(c => c.value === clientValue.value));
@@ -591,7 +620,7 @@ interface OrderItem {
   name: string;
   prix: number;
   quantity: number;
-  remise : number; 
+  remise: number;
   emoji: string;
 }
 
@@ -602,7 +631,7 @@ function addToOrder(product: typeof catalogue[0]) {
   if (existing) {
     existing.quantity++;
   } else {
-    items.value.push({ ...product, quantity: 1 , remise: 0});
+    items.value.push({ ...product, quantity: 1, remise: 0 });
   }
 }
 
@@ -623,14 +652,20 @@ const total = computed(() =>
 );
 
 // ===== SUBMIT =====
-const sub = computed(() => isEchange.value ? 'retour' : 'create');;
+
+const isCommandeSelected = computed(() => commandeSelected.value === 'Commande');
+const isEchangeSelected = computed(() => echangeSelected.value === 'Echange');
+
+
+
+const sub = computed(() =>  isCommandeSelected.value ? 'create' : isEchangeSelected.value ? 'echange' : 'retour');
 async function validerCommande() {
   if (!clientValue.value || items.value.length === 0) return;
   try {
     await api.post(`api/commande/${sub.value}`, {
       client_id: clientValue.value,
       pointDeVente_id: pdvValue.value,
-      commandes: items.value.map(i => ({ article_id: i.id, quantiter: i.quantity , remise: i.remise })),
+      commandes: items.value.map(i => ({ article_id: i.id, quantiter: i.quantity, remise: i.remise })),
       dateCommande: dateJava.value,
       bonCommande: bonCommande.value,
     });
