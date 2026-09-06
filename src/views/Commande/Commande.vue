@@ -354,12 +354,12 @@
               <div v-for="item in items" :key="item.id"
                 class="flex items-center gap-2.5 px-5 py-3 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
                 <!-- Emoji -->
-                <span class="text-lg shrink-0 w-6 text-center">{{ item.emoji }}</span>
+                
 
 
-                <div class="flex-1 min-w-0">
+                <div class="flex-1 min-w-0 font-bold">
+                  <p class="text-xs font-medium text-gray-800 dark:text-white truncate">{{ item.categorie }}</p>
                   <p class="text-xs font-medium text-gray-800 dark:text-white truncate">{{ item.name }}</p>
-                  <p class="text-[13px] text-gray-500 dark:text-gray-400">{{ item.prix.toLocaleString('fr-FR') }} Ar</p>
                 </div>
 
 

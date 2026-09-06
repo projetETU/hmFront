@@ -20,24 +20,19 @@
     <div class="max-w-full overflow-x-auto custom-scrollbar">
       <table class="min-w-full table-fixed">
         <colgroup>
-          <col class="w-[30%]" />
-          <col class="w-[25%]" />
-          <col class="w-[20%]" />
-          <col class="w-[25%]" />
+          <col class="w-[40%]" />
+          <col class="w-[45%]" />
+         
         </colgroup>
         <thead>
           <tr class="border-b border-gray-200 dark:border-gray-700">
             <th class="px-5 py-3 text-left sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Fournisseur</p>
             </th>
+            
+           
             <th class="px-5 py-3 text-right sm:px-6">
-              <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Total Montant</p>
-            </th>
-            <th class="px-5 py-3 text-right sm:px-6">
-              <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Payé</p>
-            </th>
-            <th class="px-5 py-3 text-right sm:px-6">
-              <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Restant</p>
+              <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Solde</p>
             </th>
           </tr>
         </thead>
@@ -60,21 +55,12 @@
               </span>
             </td>
 
-            <td class="px-5 py-4 sm:px-6 text-right">
-              <span class="text-gray-700 text-theme-sm dark:text-gray-300">
-                {{ achat.totalMontant.toLocaleString('fr-FR') }} Ar
-              </span>
-            </td>
+           
+          
+           
 
             <td class="px-10 py-8 sm:px-6 text-right">
-              <span class="text-theme-sm font-medium text-green-600 dark:text-green-400">
-                {{ achat.payer.toLocaleString('fr-FR') }} Ar
-              </span>
-            </td>
-
-            <td class="px-10 py-8 sm:px-6 text-right">
-              <span class="text-theme-sm font-medium"
-                :class="achat.restant > 0 ? 'text-red-500 dark:text-red-400' : 'text-green-500 dark:text-green-400'">
+              <span class="font-bold text-lg">
                 {{ achat.restant.toLocaleString('fr-FR') }} Ar
               </span>
             </td>
@@ -90,23 +76,6 @@
         </tbody>
 
        
-        <tfoot v-if="!loading && filteredData.length > 0"
-          class="border-t-2 border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
-          <tr>
-            <td class="px-10 py-6 sm:px-6 text-theme-sm  text-gray-700 dark:text-white">
-              Total 
-            </td>
-            <td class="px-5 py-3 sm:px-6 text-right text-theme-sm font-semibold text-gray-700 dark:text-white">
-              {{ totalMontant.toLocaleString('fr-FR') }} Ar
-            </td>
-            <td class="px-5 py-3 sm:px-6 text-right text-theme-sm font-semibold text-green-600 dark:text-green-400">
-              {{ totalPayer.toLocaleString('fr-FR') }} Ar
-            </td>
-            <td class="px-5 py-3 sm:px-6 text-right text-theme-sm font-semibold text-red-500 dark:text-red-400">
-              {{ totalRestant.toLocaleString('fr-FR') }} Ar
-            </td>
-          </tr>
-        </tfoot><statistics-chart />
 
       </table>
     </div>

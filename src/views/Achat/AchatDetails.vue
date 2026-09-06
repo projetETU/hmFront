@@ -13,7 +13,7 @@
         </div>
 
         <div class="col-span-12">
-          <!-- <statistics-chart /> -->
+          
           <TableAchat :fournisseur="nomFournisseur" />
         </div>
       </div>

@@ -7,6 +7,7 @@
           <col class="w-[20%]" />
           <col class="w-[25%]" />
           <col class="w-[20%]" />
+          <col class="w-[20%]" />
           <col class="w-[25%]" />
         </colgroup>
         <thead>
@@ -22,6 +23,10 @@
             </th>
             <th class="px-5 py-3 text-right sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Total</p>
+            </th>
+
+              <th class="px-5 py-3 text-right sm:px-6">
+              <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Date</p>
             </th>
 
                 <th class="px-5 py-3 text-right sm:px-6">
@@ -66,6 +71,13 @@
                 {{ (achat.prixUnitaire * achat.quantite).toLocaleString('fr-FR') }} Ar
               </span>
             </td>
+
+             <td class="px-10 py-8 sm:px-6 text-right">
+              <span class="text-theme-sm font-bold">
+              {{$dayjs(achat.achat.dateAchat).format('D MMM YYYY')}}
+              </span>
+            </td>
+
 
                 <td class="px-10 py-8 sm:px-6 text-right">
               <span class=" text-theme-sm font-medium"

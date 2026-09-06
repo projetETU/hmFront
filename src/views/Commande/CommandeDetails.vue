@@ -175,12 +175,12 @@
             <div class="space-y-4 p-6">
               <div>
                 <p class="text-xs text-gray-600 dark:text-gray-400">Date de commande</p>
-                <p class="mt-1 font-medium text-gray-900 dark:text-white">{{ formatDate(order.createdAt) }}</p>
+                <p class="mt-1 font-medium text-gray-900 dark:text-white">{{ formatDate(order.estimatedDelivery) }}</p>
               </div>
 
               <div>
                 <p class="text-xs text-gray-600 dark:text-gray-400">Date estimée de livraison</p>
-                <p class="mt-1 font-medium text-gray-900 dark:text-white">{{ formatDate(order.estimatedDelivery) }}</p>
+                <p class="mt-1 font-medium text-gray-900 dark:text-white">{{ formatDate(order.createdAt) }}</p>
               </div>
 
               <div v-if="order.deliveredAt">
