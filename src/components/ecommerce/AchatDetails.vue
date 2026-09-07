@@ -125,19 +125,4 @@ onMounted(async () => {
     }
 })
 const details = computed(() => achatsDetails.value[0] ?? null);
-async function setPayer() {
-    try {
-        await api.put(`api/achat/editDetails/fournisseur/${nomFournisseur}`, {
-            payer: payer.value.replace(/\s/g, '').replace(',', '.')
-        });
-        
-        // Recharger les données
-        const response = await api.get(`api/achat/details/fournisseur/${nomFournisseur}`)
-        achatsDetails.value = response.data
-        payer.value = ''
-        
-    } catch (error) {
-        console.error('Erreur lors de la mise à jour du details:', error);
-    }
-}
 </script>

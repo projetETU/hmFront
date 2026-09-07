@@ -1,6 +1,6 @@
 <template>
   <div class="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
- 
+
     <div class="max-w-full overflow-x-auto custom-scrollbar">
       <table class="min-w-full table-fixed">
         <colgroup>
@@ -25,11 +25,11 @@
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Total</p>
             </th>
 
-              <th class="px-5 py-3 text-right sm:px-6">
+            <th class="px-5 py-3 text-right sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Date</p>
             </th>
 
-                <th class="px-5 py-3 text-right sm:px-6">
+            <th class="px-5 py-3 text-right sm:px-6">
               <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">Action</p>
             </th>
           </tr>
@@ -43,9 +43,7 @@
           </tr>
 
           <tr v-for="achat in filteredData" :key="achat.fournisseur"
-            class="cursor-pointer border-t border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/100 transition-colors duration-200"
-          
-            >
+            class="cursor-pointer border-t border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/100 transition-colors duration-200">
 
             <td class="px-5 py-4 sm:px-6">
               <span class="block font-black text-xl text-gray-800 text-theme-sm dark:text-white/90">
@@ -55,43 +53,41 @@
 
             <td class="px-5 py-4 sm:px-6 text-right">
               <span class="text-gray-700 text-theme-sm font-bold dark:text-gray-300">
-              {{ achat.prixUnitaire.toLocaleString('fr-FR') }} Ar
+                {{ achat.prixUnitaire.toLocaleString() }} Ar
               </span>
             </td>
 
             <td class="px-10 py-8 sm:px-6 text-right">
               <span class="text-theme-sm font-bold">
-                 {{ achat.quantite.toLocaleString('fr-FR') + ' ' + achat.designation.uniter.name }}
+                {{ achat.quantite.toLocaleString('fr-FR') + ' ' + achat.designation.uniter.name }}
               </span>
             </td>
 
             <td class="px-10 py-8 sm:px-6 text-right">
-              <span class="text-theme-sm font-bold"
-                >
+              <span class="text-theme-sm font-bold">
                 {{ (achat.prixUnitaire * achat.quantite).toLocaleString() }} Ar
               </span>
             </td>
 
-             <td class="px-10 py-8 sm:px-6 text-right">
+            <td class="px-10 py-8 sm:px-6 text-right">
               <span class="text-theme-sm font-bold">
-              {{$dayjs(achat.achat.dateAchat).format('D MMM YYYY')}}
+                {{ $dayjs(achat.achat.dateAchat).format('D MMM YYYY') }}
               </span>
             </td>
 
 
-                <td class="px-10 py-8 sm:px-6 text-right">
-              <span class=" text-theme-sm font-medium"
-                >
+            <td class="px-10 py-8 sm:px-6 text-right">
+              <span class=" text-theme-sm font-medium">
                 <div class="flex space-x-2 justify-end">
-                <Button variant="outline" size="sm" @click="handleClick(achat)">
-                  <DollarSign  class="inline-block w-4 h-4 mr-1" />
-                  Payer
-                </Button>
+                  <Button variant="outline" size="sm" @click="handlePayerClick(achat.id)">
+                    <DollarSign class="inline-block w-4 h-4 mr-1" />
+                    Payer
+                  </Button>
 
                   <Button variant="outlineRed" size="sm" @click="handleClick(achat)">
-                  <X  class="inline-block w-4 h-4 mr-1" />
-                  Annuler
-                </Button>
+                    <X class="inline-block w-4 h-4 mr-1" />
+                    Annuler
+                  </Button>
                 </div>
               </span>
             </td>
@@ -106,8 +102,8 @@
 
         </tbody>
 
-       
-      
+
+
       </table>
     </div>
   </div>
@@ -149,8 +145,8 @@ console.log(props.fournisseur);
 async function fetchAchats() {
   loading.value = true
   try {
-    const response = await api.get('/api/achat/parFournisseur' , 
-      { params : { fournisseur : props.fournisseur } }
+    const response = await api.get('/api/achat/parFournisseur',
+      { params: { fournisseur: props.fournisseur } }
     )
     achats.value = response.data
   } catch (error) {
@@ -159,10 +155,17 @@ async function fetchAchats() {
     loading.value = false
   }
 }
+const handlePayerClick = async (id) => {
+  try {
+    await api.put(`/api/achat/editDetails/payer/${id}`)
+  } catch (error) {
+    console.error('Erreur lors du chargement des achats:', error)
+  }
+}
 
 onMounted(async () => {
   await fetchAchats()
-  
+
 })
 
 const filteredData = computed(() => {
@@ -186,8 +189,7 @@ const filteredData = computed(() => {
 //   filters.value = { fournisseur: '' }
 // }
 
-function handleClick(achat: AchatParFournisseur)
-{
-    router.push({ name: 'AchatDetails', params: { fournisseur : achat.fournisseur } });
+function handleClick(achat: AchatParFournisseur) {
+  router.push({ name: 'AchatDetails', params: { fournisseur: achat.fournisseur } });
 }
 </script>
