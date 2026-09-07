@@ -68,7 +68,7 @@
             <td class="px-10 py-8 sm:px-6 text-right">
               <span class="text-theme-sm font-bold"
                 >
-                {{ (achat.prixUnitaire * achat.quantite).toLocaleString('fr-FR') }} Ar
+                {{ (achat.prixUnitaire * achat.quantite).toLocaleString() }} Ar
               </span>
             </td>
 

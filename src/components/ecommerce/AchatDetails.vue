@@ -1,7 +1,7 @@
 <template>
 
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-6">
-        <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
+        <!-- <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
 
 
             <div>
@@ -13,7 +13,7 @@
             </div>
 
 
-        </div>
+        </div> -->
 
         <div class="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
             <div class="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
@@ -28,7 +28,7 @@
             <div class="flex items-end justify-between mt-5">
                 <div>
                     <span class="text-sm text-gray-500 dark:text-gray-400">Nombre achat</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.nombreAchats
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.nombreAchats.toLocaleString()
                         }}</h4>
                 </div>
 
@@ -50,12 +50,12 @@
 
             <div class=" items-end justify-between mt-5">
                 <div>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Solde</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.restant }} Ar
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Solde total</span>
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.restant?.toLocaleString() }} Ar
                     </h4>
 
                 </div>
-                <Progress :model-value="pourcent" class="w-[100%] h-11 mt-1" />
+                <!-- <Progress :model-value="pourcent" class="w-[100%] h-11 mt-1" /> -->
 
 
             </div>
@@ -77,7 +77,7 @@
             <div class="flex items-end justify-between mt-5">
                 <div>
                     <span class="text-sm text-gray-500 dark:text-gray-400">Total general</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.totalMontant
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.totalMontant?.toLocaleString()
                         }} Ar
                     </h4>
                 </div>
@@ -139,4 +139,5 @@ async function setPayer() {
     } catch (error) {
         console.error('Erreur lors de la mise à jour du details:', error);
     }
-}</script>
+}
+</script>
