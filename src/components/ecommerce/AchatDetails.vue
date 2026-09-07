@@ -27,8 +27,8 @@
 
             <div class="flex items-end justify-between mt-5">
                 <div>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">Nombre achat</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.nombreAchats.toLocaleString()
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Nombre achat impaye</span>
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.nombreAchats.toLocaleString() ? details?.nombreAchats.toLocaleString() : 0
                         }}</h4>
                 </div>
 
@@ -51,7 +51,7 @@
             <div class=" items-end justify-between mt-5">
                 <div>
                     <span class="text-sm text-gray-500 dark:text-gray-400">Solde total</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.restant?.toLocaleString() }} Ar
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.restant?.toLocaleString() ? details?.restant?.toLocaleString() : 0 }} Ar
                     </h4>
 
                 </div>
@@ -77,7 +77,7 @@
             <div class="flex items-end justify-between mt-5">
                 <div>
                     <span class="text-sm text-gray-500 dark:text-gray-400">Total general</span>
-                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.totalMontant?.toLocaleString()
+                    <h4 class="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">{{ details?.totalMontant?.toLocaleString() ? details?.totalMontant?.toLocaleString() : 0
                         }} Ar
                     </h4>
                 </div>

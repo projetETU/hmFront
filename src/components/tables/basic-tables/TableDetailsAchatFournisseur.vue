@@ -111,7 +111,7 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import Input from '@/components/ui/input/Input.vue'
+
 
 import api from '@/api/api'
 import { useRouter } from 'vue-router'
@@ -158,6 +158,7 @@ async function fetchAchats() {
 const handlePayerClick = async (id) => {
   try {
     await api.put(`/api/achat/editDetails/payer/${id}`)
+    await fetchAchats()
   } catch (error) {
     console.error('Erreur lors du chargement des achats:', error)
   }

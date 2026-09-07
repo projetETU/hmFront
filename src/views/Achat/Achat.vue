@@ -269,10 +269,8 @@ const departements = ref<any[]>([]);
 const selecteddepartement = computed(() => departements.value.find((d: any) => d.value === departementValue.value));
 
 // Mode de paiement → MultipleAchatRequest.modePaiement (Long)
-const openmodepaiement = ref(false);
 const modepaiementValue = ref<number | null>(null);
 const modepaiements = ref<any[]>([]);
-const selectedmodepaiement = computed(() => modepaiements.value.find((m: any) => m.value === modepaiementValue.value));
 
 // Fournisseur → MultipleAchatRequest.fournisseur_id (Long)
 const openFournisseur = ref(false);

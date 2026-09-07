@@ -56,12 +56,12 @@
             </td>
 
            
-          
+         
            
 
             <td class="px-10 py-8 sm:px-6 text-right">
               <span class="font-bold text-lg">
-                {{ achat.restant.toLocaleString('fr-FR') }} Ar
+                {{ (achat.totalMontant-achat.payer).toLocaleString() }} Ar
               </span>
             </td>
 
@@ -92,7 +92,7 @@ interface AchatParFournisseur {
   fournisseur: string
   totalMontant: number
   payer: number
-  restant: number
+  // restant: '2'
 }
 
 
