@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <Button :onClick="createProduit"
+                    <Button :onClick="createProduction"
                         class="mt-3 h-11 w-full rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 active:bg-blue-800">
                         <MapPin></MapPin>
                         Creer
@@ -116,16 +116,26 @@ const alertTitle = ref("Succès");
 type AlertVariant = "success" | "default" | "primary" | "destructive" | null | undefined;
 const alertVariant = ref<AlertVariant>("success");
 
-const createProduit = async () => {
-    console.log(categorieValue.value);
 
+async function fetchcategorie() {
     try {
-        const response = await api.post("/api/produit/create", {
-            name: production.value,
-            uniter_id: uniterValue.value,
-            categorie_id: categorieValue.value
+        const response = await api.get('api/mouvement-stock/stockProduction')
 
-        });
+        categories.value = response.data.map((categorie: any) => ({
+            value: categorie.articleId,
+            label: categorie.categorie + "  " + categorie.article,
+            // label: categorie
+        }));
+    } catch (error) {
+        console.error("Erreur lors de la récupération des categories:", error);
+    }
+}
+const createProduction = async () => {
+    // console.log(categorieValue.value);
+      const id = selectedcategorie.value?.value;
+      const quantiter = production.value;
+    try {
+        const response = await api.post(`/api/mouvement-stock/production/${id}/${quantiter}`);
         alertTitle.value = "Succès";
         alertVariant.value = "success";
         openAlert.value = true;
@@ -146,21 +156,6 @@ const createProduit = async () => {
     }
 };
 
-async function fetchcategorie() {
-    try {
-        const response = await api.get('api/mouvement-stock/stockProduction')
-
-
-        categories.value = response.data.map((categorie: any) => ({
-            value: categorie.articleId,
-            label: categorie.categorie + "  " + categorie.article,
-            // label: categorie
-            
-        }));
-    } catch (error) {
-        console.error("Erreur lors de la récupération des categories:", error);
-    }
-}
 
 
 fetchcategorie();

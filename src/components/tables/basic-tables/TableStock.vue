@@ -59,14 +59,15 @@
       >
         <td class="px-5 py-4 sm:px-6">
           {{ stock.categorie + "  " + stock.article }}
+         
         </td>
 
         <td class="px-5 py-4 sm:px-6 text-right">
-          {{ Number(stock.stock ?? 0).toLocaleString() }}
+          {{ Number(stock.stock ?? 0).toLocaleString() + " " + stock.uniter }}
         </td>
 
         <td class="px-5 py-4 sm:px-6 text-right">
-          {{ Number(stock.productionParJour ?? 0).toLocaleString() }}
+          {{ Number(stock.productionParJour ?? 0).toLocaleString() + " " + stock.uniter }}
         </td>
       </tr>
 
