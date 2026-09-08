@@ -38,7 +38,7 @@
 
         <th class="px-5 py-3 text-right sm:px-6">
           <p class="font-medium text-gray-500 text-theme-xs dark:text-gray-400">
-            Production / jour
+            Production du jour
           </p>
         </th>
       </tr>
@@ -51,7 +51,6 @@
           Chargement...
         </td>
       </tr>
-
       <tr
         v-for="stock in filteredData"
         :key="stock.article"
@@ -59,15 +58,15 @@
         @click="handleStock(stock)"
       >
         <td class="px-5 py-4 sm:px-6">
-          {{ stock.article }}
+          {{ stock.categorie + "  " + stock.article }}
         </td>
 
         <td class="px-5 py-4 sm:px-6 text-right">
-          {{ Number(stock.stock ?? 0).toLocaleString("fr-FR") }}
+          {{ Number(stock.stock ?? 0).toLocaleString() }}
         </td>
 
         <td class="px-5 py-4 sm:px-6 text-right">
-          {{ Number(stock.productionParJour ?? 0).toLocaleString("fr-FR") }}
+          {{ Number(stock.productionParJour ?? 0).toLocaleString() }}
         </td>
       </tr>
 

@@ -38,11 +38,19 @@ const router = createRouter({
       props: true,
     },
 
-       {
+    {
       path: '/stockProduction/:articleId',
       name: 'StockProduction',
       component: () => import('../views/Stock/StockProduction.vue'),
       meta: { title: 'Stock Production' },
+      props: true,
+    },
+
+        {
+      path: '/production',
+      name: 'Production',
+      component: () => import('../views/Stock/Production.vue'),
+      meta: { title: 'Production' },
       props: true,
     },
 

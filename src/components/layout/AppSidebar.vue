@@ -174,7 +174,7 @@ import {
 import BoxCubeIcon from "@/icons/BoxCubeIcon.vue";
 import { useSidebar } from "@/composables/useSidebar";
 import { CircleQuestionMark, FileText, Handbag } from "@lucide/vue";
-import { Apple, BadgeDollarSign, CircleDollarSign, CircleUser, Database, DollarSign, Factory, Fingerprint, History, Package, ShoppingBag, ShoppingCart, Truck, UtensilsCrossed } from "lucide-vue-next";
+import { Apple, BadgeDollarSign, CircleDollarSign, CircleUser, Database, DollarSign, Factory, Fingerprint, History, Package, ShoppingBag, ShoppingCart, Truck, UtensilsCrossed, Zap } from "lucide-vue-next";
 import Stock from "@/views/Stock/Stock.vue";
 
 const route = useRoute();
@@ -278,8 +278,14 @@ const menuGroups = [
     items: [
       {
         icon: Package,
-        name: "Stock et production",
+        name: "Stock",
         path: "/stock",
+        mety: user.value.role.name === "ADMIN" ? true : false,
+      },
+         {
+        icon: Zap,
+        name: "Production",
+        path: "/production",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
       {
