@@ -290,13 +290,14 @@ const createAchat = async () => {
             
             modePaiement: modepaiementValue.value,
             fournisseur_id: fournisseurValue.value,
+            departement: departementValue.value,
             achats: [
                 {
                     designation: designationValue.value,
                     prixUnitaire: prixUnitaire.value,
                     quantite: quantite.value,
                     typeDepense: typeDepenseValue.value,
-                    departement: departementValue.value,
+                    
                 }
             ]
         });

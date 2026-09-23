@@ -51,9 +51,9 @@
                   <Label for="terms">Retour</Label>
                 </div> -->
 
-              <RadioGroup class="flex  gap-4 " default-value="Commande">
+              <RadioGroup class="flex gap-4 " default-value="Sortie" v-model="selectedType">
                 <div class="flex items-center space-x-2">
-                  <RadioGroupItem class="w-5 h-5" id="r1" value="Commande" />
+                  <RadioGroupItem class="w-5 h-5" id="r1" value="Sortie" />
                   <Label for="r1">Commande</Label>
                 </div>
                 <div class="flex items-center space-x-2">
@@ -201,15 +201,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <!-- Bon de commande -->
-              <div class="flex flex-col gap-2.5">
-                <label class="text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
-                  <FileTextIcon class="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                  Bon de Commande
-                </label>
-                <Input v-model="bonCommande"
-                  class="h-11 bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 text-sm placeholder:text-gray-400 dark:placeholder:text-slate-500 transition-colors focus:border-purple-300 dark:focus:border-purple-600 focus:bg-white dark:focus:bg-slate-700"
-                  placeholder="Numéro de bon..." />
-              </div>
+
 
               <!-- Date -->
               <div class="flex flex-col gap-2.5">
@@ -222,16 +214,48 @@
                     <Button variant="outline"
                       class="h-11 justify-between font-normal text-sm bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-700">
                       <span class="text-gray-700 dark:text-gray-300">
-                        {{ date.toString().slice(0, 10) }}
+                        {{ dateCommande || 'Sélectionner une date' }}
                       </span>
                       <CalendarIcon class="w-4 h-4 opacity-50" />
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent class="w-auto p-0" align="start">
-                    <Calendar v-model="date" class="rounded-md" :min-value="new CalendarDate(1925, 1, 1)"
+                    <Calendar v-model="dateC" class="rounded-md" :min-value="new CalendarDate(1925, 1, 1)"
                       :max-value="new CalendarDate(2035, 1, 1)" />
                   </PopoverContent>
                 </Popover>
+              </div>
+
+              <div class="flex flex-col gap-2.5">
+                <label class="text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                  <CalendarIcon class="w-4 h-4 text-orange-600 dark:text-orange-400" />
+                  Date de livraison
+                </label>
+                <Popover>
+                  <PopoverTrigger as-child>
+                    <Button variant="outline"
+                      class="h-11 justify-between font-normal text-sm bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-700">
+                      <span class="text-gray-700 dark:text-gray-300">
+                        {{ dateLivraison || 'Sélectionner une date' }}
+                      </span>
+                      <CalendarIcon class="w-4 h-4 opacity-50" />
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent class="w-auto p-0" align="start">
+                    <Calendar v-model="dateL" class="rounded-md" :min-value="new CalendarDate(1925, 1, 1)"
+                      :max-value="new CalendarDate(2035, 1, 1)" />
+                  </PopoverContent>
+                </Popover>
+              </div>
+
+              <div class="flex flex-col gap-2.5">
+                <label class="text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center gap-2">
+                  <FileTextIcon class="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  Bon de commande
+                </label>
+                <Input v-model="bonCommande"
+                  class="h-11 bg-gray-50 dark:bg-slate-700/50 border-gray-200 dark:border-slate-600 text-sm placeholder:text-gray-400 dark:placeholder:text-slate-500 transition-colors focus:border-purple-300 dark:focus:border-purple-600 focus:bg-white dark:focus:bg-slate-700"
+                  placeholder="Numéro de bon..." />
               </div>
             </div>
           </div>
@@ -354,7 +378,7 @@
               <div v-for="item in items" :key="item.id"
                 class="flex items-center gap-2.5 px-5 py-3 hover:bg-gray-50 dark:hover:bg-slate-700/30 transition-colors">
                 <!-- Emoji -->
-                
+
 
 
                 <div class="flex-1 min-w-0 font-bold">
@@ -478,7 +502,7 @@ import { CalendarDate, fromDate, getLocalTimeZone } from '@internationalized/dat
 import { Calendar } from '@/components/ui/calendar'
 import api from "@/api/api";
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { Checkbox } from '@/components/ui/checkbox'
+// import { Checkbox } from '@/components/ui/checkbox'
 import { Label } from '@/components/ui/label'
 import { watch } from "vue";
 import SendIcon from "@/icons/SendIcon.vue";
@@ -492,8 +516,11 @@ import {
 const currentPageTitle = ref("Commande");
 const bonCommande = ref('');
 
-const date = ref(fromDate(new Date(), getLocalTimeZone())) as Ref<DateValue>
-const dateJava = computed(() => date.value.toString().slice(0, 10))
+const dateC = ref(fromDate(new Date(), getLocalTimeZone())) as Ref<DateValue>;
+const dateL = ref(fromDate(new Date(), getLocalTimeZone())) as Ref<DateValue>;
+
+const dateCommande = computed(() => dateC.value.toString().slice(0, 10));
+const dateLivraison = computed(() => dateL.value.toString().slice(0, 10));
 
 const clients = ref([]);
 const pointsDeVente = ref([]);
@@ -588,19 +615,6 @@ const selectedcategorie = ref('all');
 const openSuccessAlert = ref(false);
 const openErrorAlert = ref(false);
 const message = ref('');
-const isEchange = ref(false)
-
-const commandeSelected = ref('Commande');
-const echangeSelected = ref('Echange');
-const retourSelected = ref('Retour');
-
-
-
-
-
-watch(isEchange, (newVal) => {
-  console.log('isEchange changed:', newVal)
-})
 
 
 
@@ -653,12 +667,15 @@ const total = computed(() =>
 
 // ===== SUBMIT =====
 
-const isCommandeSelected = computed(() => commandeSelected.value === 'Commande');
-const isEchangeSelected = computed(() => echangeSelected.value === 'Echange');
+const selectedType = ref('Sortie');
+const isCommandeSelected = computed(() => selectedType.value === 'Sortie' || selectedType.value === 'Echange');
+// const isEchangeSelected = computed(() => selectedType.value === 'Echange');
+// const isRetourSelected = computed(() => selectedType.value === 'Retour');
 
 
 
-const sub = computed(() =>  isCommandeSelected.value ? 'create' : isEchangeSelected.value ? 'echange' : 'retour');
+
+const sub = computed(() => isCommandeSelected.value ? 'create' : 'retour');
 async function validerCommande() {
   if (!clientValue.value || items.value.length === 0) return;
   try {
@@ -666,7 +683,9 @@ async function validerCommande() {
       client_id: clientValue.value,
       pointDeVente_id: pdvValue.value,
       commandes: items.value.map(i => ({ article_id: i.id, quantiter: i.quantity, remise: i.remise })),
-      dateCommande: dateJava.value,
+      dateCommande: dateCommande.value,
+      dateLivraison: dateLivraison.value,
+      typeCommande : selectedType.value,
       bonCommande: bonCommande.value,
     });
 
