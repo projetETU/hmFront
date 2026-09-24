@@ -36,7 +36,7 @@
                                                     ? 'text-gray-900 dark:text-white font-medium'
                                                     : 'text-gray-500 dark:text-slate-400'
                                             ]">
-                                                {{ selectedcategorie?.label || "Sélectionner un categorie" }}
+                                                {{ selectedcategorie?.label || "Sélectionner un article" }}
                                             </span>
                                         </div>
                                         <ChevronsUpDownIcon class="w-4 h-4 opacity-40 shrink-0" />
@@ -65,6 +65,25 @@
                                 </PopoverContent>
                             </Popover>
                         </div>
+                    </div>
+
+                    <div class="flex flex-col mt-2">
+
+                        <Popover>
+                            <PopoverTrigger as-child>
+                                <Button variant="outline"
+                                    class="h-11 justify-between font-normal text-sm  border-gray-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-700">
+                                    <span class="text-gray-700 dark:text-gray-300">
+                                        {{ dateProduction || 'Sélectionner une date' }}
+                                    </span>
+                                    <CalendarIcon class="w-4 h-4 opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent class="w-auto p-0" align="start">
+                                <Calendar v-model="dateC" class="rounded-md" :min-value="new CalendarDate(1925, 1, 1)"
+                                    :max-value="new CalendarDate(2035, 1, 1)" />
+                            </PopoverContent>
+                        </Popover>
                     </div>
 
                     <Button :onClick="createProduction"
@@ -97,6 +116,14 @@ import {
 import { Button } from '@/components/ui/button';
 import { MapPin } from "lucide-vue-next";
 
+import type { DateValue } from '@internationalized/date'
+import { CalendarDate, fromDate, getLocalTimeZone } from '@internationalized/date'
+import { Calendar } from '@/components/ui/calendar'
+
+const dateProduction = computed(() => dateC.value.toString().slice(0, 10));
+const dateC = ref(fromDate(new Date(), getLocalTimeZone())) as Ref<DateValue>;
+
+
 const currentPageTitle = ref("Produit");
 const openAlert = ref(false);
 
@@ -104,7 +131,6 @@ const production = ref("");
 const adresse = ref("");
 const codeMagasin = ref("");
 
-const uniterValue = ref('');
 
 const opencategorie = ref(false);
 const categorieValue = ref('');
@@ -132,10 +158,14 @@ async function fetchcategorie() {
 }
 const createProduction = async () => {
     // console.log(categorieValue.value);
-      const id = selectedcategorie.value?.value;
-      const quantiter = production.value;
+    const id = selectedcategorie.value?.value;
+    const quantiter = production.value;
     try {
-        const response = await api.post(`/api/mouvement-stock/production/${id}/${quantiter}`);
+        const response = await api.post("/api/mouvement-stock/production", {
+            id: id,
+            quantiter: quantiter,
+            dateProduction: dateProduction.value
+        });
         alertTitle.value = "Succès";
         alertVariant.value = "success";
         openAlert.value = true;

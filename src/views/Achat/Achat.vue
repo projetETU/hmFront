@@ -11,9 +11,27 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 md:gap-4">
 
             <div
-                class="rounded-2xl border w-100 border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-white/[0.03] md:p-4">
+                 class="h-11 w-full font-normal text-sm transition-all duration-200">
                 <span class="text-lg font-bold text-gray-500 dark:text-gray-400">Faire un achat</span>
                 <div class="justify-between">
+                    <div class="flex flex-col gap-2.5">
+
+                        <Popover>
+                            <PopoverTrigger as-child>
+                                <Button variant="outline"
+                                    class="h-11 justify-between font-normal text-sm  border-gray-200 dark:border-slate-600 hover:bg-white dark:hover:bg-slate-700">
+                                    <span class="text-gray-700 dark:text-gray-300">
+                                        {{ dateAchat || 'Sélectionner une date' }}
+                                    </span>
+                                    <CalendarIcon class="w-4 h-4 opacity-50" />
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent class="w-auto p-0" align="start">
+                                <Calendar v-model="dateC" class="rounded-md" :min-value="new CalendarDate(1925, 1, 1)"
+                                    :max-value="new CalendarDate(2035, 1, 1)" />
+                            </PopoverContent>
+                        </Popover>
+                    </div>
 
                     <!-- Produit (designation = Long ID) -->
                     <div class="flex grid-cols-3 gap-2 w-full mt-2">
@@ -242,11 +260,19 @@ import {
 import {
     Popover, PopoverContent, PopoverTrigger,
 } from '@/components/ui/popover';
+
+import type { DateValue } from '@internationalized/date'
+import { CalendarDate, fromDate, getLocalTimeZone } from '@internationalized/date'
+import { Calendar } from '@/components/ui/calendar'
+
 import { Button } from '@/components/ui/button';
 import { Plus } from "lucide-vue-next";
 
 const currentPageTitle = ref("Achat");
 const openAlert = ref(false);
+const dateAchat = computed(() => dateC.value.toString().slice(0, 10));
+const dateC = ref(fromDate(new Date(), getLocalTimeZone())) as Ref<DateValue>;
+
 
 // Produit → mappe sur AchatRequest.designation (Long)
 const produits = ref<any[]>([]);
@@ -287,17 +313,19 @@ const alertVariant = ref<AlertVariant>("success");
 const createAchat = async () => {
     try {
         const response = await api.post("/api/achat/create", {
-            
+
             modePaiement: modepaiementValue.value,
             fournisseur_id: fournisseurValue.value,
             departement: departementValue.value,
+            dateAchat: dateAchat.value,
+
             achats: [
                 {
                     designation: designationValue.value,
                     prixUnitaire: prixUnitaire.value,
                     quantite: quantite.value,
                     typeDepense: typeDepenseValue.value,
-                    
+
                 }
             ]
         });
