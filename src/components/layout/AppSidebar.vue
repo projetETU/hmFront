@@ -294,6 +294,8 @@ const menuGroups = [
         path: "/article",
         mety: user.value.role.name === "ADMIN" ? true : false,
       },
+
+
    
   
     ],
@@ -317,6 +319,13 @@ const menuGroups = [
         name: "Mes données",
         path: "/data",
         mety: true,
+      },
+
+              {
+        icon: History,
+        name: "Mouvement de stock",
+        path: "/historique-mouvement-stock-ingredient",
+        mety: user.value.role.name === "ADMIN" ? true : false,
       },
     ],
   },

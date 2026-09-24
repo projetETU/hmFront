@@ -155,6 +155,13 @@ const router = createRouter({
       component: () => import('../views/Achat/Achat.vue'),
       meta: { title: 'Achat' },
     },
+
+                      {
+      path: '/historique-mouvement-stock-ingredient',
+      name:'historique-mouvement-stock-ingredient',
+      component: () => import('../views/Stock/Ingredient/Historique.vue'),
+      meta: { title: 'Historique des mouvements de stock' },
+    },
   
 
 
